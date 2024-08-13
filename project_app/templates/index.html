@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 CT Scan Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        select, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            background-color: #0066cc;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Processing Block */
+        #processing-block {
+            display: none;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        #processing-message {
+            position: absolute;
+            width: 100%;
+            font-size: 16px;
+            color: #fff;
+            top: 0;
+            left: 0;
+        }
+
+        #progress-container {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 4px;
+            height: 40px;
+        }
+
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #0066cc;
+            border-radius: 4px;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>COVID-19 CT Scan Prediction</h1>
+        <form id="prediction-form" action="/" method="post" enctype="multipart/form-data">
+            <label for="model">Select Model:</label>
+            <select name="model" id="model">
+                <option value="InceptionV3">InceptionV3</option>
+                <option value="DenseNet121">DenseNet121</option>
+                <option value="MobileNetV2">MobileNetV2</option>
+            </select>
+            <label for="file">Upload CT Scan Image:</label>
+            <input type="file" name="file" id="file" accept="image/*">
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Processing Block with Progress Bar -->
+        <div id="processing-block">
+            <p id="processing-message">System processing, please drink a cup of coffee...</p>
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="prediction-result"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // Get the processing block, message, and progress bar elements
+            var processingBlock = document.getElementById("processing-block");
+            var processingMessage = document.getElementById("processing-message");
+            var progressContainer = document.getElementById("progress-container");
+            var progressBar = document.getElementById("progress-bar");
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // Function to show the modal with prediction result
+            function showModal(result) {
+                processingBlock.style.display = "none"; // Hide the processing block
+                document.getElementById("prediction-result").innerText = result;
+                modal.style.display = "block";
+            }
+
+            // Function to animate the progress bar
+            function animateProgressBar() {
+                var width = 0;
+                var interval = setInterval(function() {
+                    if (width >= 100) {
+                        clearInterval(interval);
+                    } else {
+                        width++;
+                        progressBar.style.width = width + "%";
+                    }
+                }, 100); // Adjust the speed of the progress bar here
+            }
+
+            // Handle form submission to show result in modal
+            document.getElementById("prediction-form").onsubmit = function(event) {
+                event.preventDefault(); // Prevent the form from submitting the traditional way
+
+                processingBlock.style.display = "block"; // Show the processing block
+
+                animateProgressBar(); // Start animating the progress bar
+
+                var formData = new FormData(this);
+                
+                fetch('/', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(result => {
+                    showModal(result);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    processingBlock.style.display = "none"; // Hide the processing block if there's an error
+                });
+            };
+        });
+    </script>
+</body>
+</html>

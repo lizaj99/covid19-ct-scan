@@ -1,0 +1,58 @@
+Downloading data from https://storage.googleapis.com/tensorflow/keras-applications/inception_v3/inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5
+
+
+[1m87910968/87910968[22m [32m━━━━━━━━━━━━━━━━━━━━[39m [1m4s[22m 0us/step
+Batch shape: (32, 299, 299, 3)
+Labels shape: (32,)
+wandb: WARNING The save_model argument by default saves the model in the HDF5 format that cannot save custom objects like subclassed models and custom layers. This behavior will be deprecated in a future release in favor of the SavedModel format. Meanwhile, the HDF5 model is saved as W&B files and the SavedModel as W&B Artifacts.
+[notice] A new release of pip is available: 24.0 -> 24.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+Requirement already satisfied: wandb in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (0.17.1)Note: you may need to restart the kernel to use updated packages.
+Requirement already satisfied: click!=8.0.0,>=7.1 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from wandb) (8.1.7)
+Requirement already satisfied: docker-pycreds>=0.4.0 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from wandb) (0.4.0)
+Requirement already satisfied: gitpython!=3.1.29,>=1.0.0 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from wandb) (3.1.43)
+Requirement already satisfied: platformdirs in c:\users\lilil\appdata\roaming\python\python311\site-packages (from wandb) (4.2.2)
+Requirement already satisfied: protobuf!=4.21.0,<6,>=3.19.0 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from wandb) (4.25.3)
+Requirement already satisfied: psutil>=5.0.0 in c:\users\lilil\appdata\roaming\python\python311\site-packages (from wandb) (5.9.8)
+Requirement already satisfied: pyyaml in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from wandb) (6.0.1)
+Requirement already satisfied: requests<3,>=2.0.0 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from wandb) (2.31.0)
+Requirement already satisfied: sentry-sdk>=1.0.0 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from wandb) (2.5.1)
+Requirement already satisfied: setproctitle in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from wandb) (1.3.3)
+Requirement already satisfied: setuptools in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from wandb) (65.5.0)
+Requirement already satisfied: colorama in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from click!=8.0.0,>=7.1->wandb) (0.4.6)
+Requirement already satisfied: six>=1.4.0 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from docker-pycreds>=0.4.0->wandb) (1.16.0)
+Requirement already satisfied: gitdb<5,>=4.0.1 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from gitpython!=3.1.29,>=1.0.0->wandb) (4.0.11)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from requests<3,>=2.0.0->wandb) (3.2.0)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from requests<3,>=2.0.0->wandb) (3.4)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from requests<3,>=2.0.0->wandb) (2.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from requests<3,>=2.0.0->wandb) (2023.7.22)
+Requirement already satisfied: smmap<6,>=3.0.1 in c:\users\lilil\appdata\local\programs\python\python311\lib\site-packages (from gitdb<5,>=4.0.1->gitpython!=3.1.29,>=1.0.0->wandb) (5.0.1)
+Epoch 1/2
+c:\Users\lilil\AppData\Local\Programs\Python\Python311\Lib\site-packages\keras\src\trainers\data_adapters\py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
+  self._warn_if_super_not_called()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
