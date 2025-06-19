@@ -1,6 +1,6 @@
-# covid19-ct-scan classification
+# Covid19-Ct-Scan classification
 
-COVID19-CT-Scan Classification is a deep learning-based project that classifies CT scan images into COVID-19 and non-COVID-19 categories. The goal is to assist healthcare professionals with rapid and accurate diagnostic tools using AI. The project also includes a web-based application built with Flask that allows users to upload images and receive real-time predictions.
+COVID19-CT-scan Classification is a deep learning-based project that classifies CT scan images into COVID-19 and non-COVID-19 categories. The goal is to assist healthcare professionals with rapid and accurate diagnostic tools using AI. The project also includes a web-based application built with Flask that allows users to upload images and receive real-time predictions.
 
 Features
 - CT Image Classification: Predict COVID-19 presence from CT scans
