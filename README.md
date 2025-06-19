@@ -1,2 +1,2 @@
 # covid-ct-scan
-Repository for COVID CT Scan project
+Repository for COVID19 CT Scan project
